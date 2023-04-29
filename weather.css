@@ -8,7 +8,7 @@
 
 }
 .card{
-
+    
     width: 80%;
     max-width: 360px;
     background: linear-gradient(135deg,#41635a,#c3bee4);
@@ -46,7 +46,7 @@ align-items: center;
 .search button{
     border:0;
     outline:0;
-    background: #ebfffc67;
+    background:none;
     border-radius: 50%;
     width:60px;
     height:60px;
@@ -57,9 +57,9 @@ align-items: center;
 .geo button{
     border:0;
     outline:0;
-    background: #ebfffc46;
+    background:none;
     border-radius: 50%;
-    width:60px;
+    width:80px;
     height:60px;
     cursor: pointer;
 
@@ -69,16 +69,16 @@ align-items: center;
     color:#524d4d;
 }
 .search button img{
-    width:16px;
+    width:20px;
 
 }
 .weather-icon{
 
     width:170px;
-    margin-top: 30px;
+    margin-top: -35px;
 }
 .weather h1{
-    font-size: 80px;
+    font-size: 40px;
     font: weight 500;
 
 }
@@ -109,3 +109,41 @@ align-items: center;
     font-size: 28px;
     margin-top: -6px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+video {
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+  .video-wrapper {
+    border: 2px solid #000;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .header{
+    position: relative;
+    color: white;
+    text-shadow: 1px 1px 8px rgba(0,0,0,0.6);
+  }
