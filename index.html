@@ -38,12 +38,12 @@
         <div id="result1"></div>
 
     <div class="search">
-
+        
         <input id="cname" type="text" placeholder="Enter City Name" spellcheck="false">
-        <button onclick="displayCity()"><img src="./images/search.png" alt=""></button>
-
+        <button type="submit" onclick="displayCity()"><img src="./images/search.png" alt=""></button>
         
     </div> 
+
     <div id="result"></div>
         
       <div id="result3"></div>
@@ -78,21 +78,23 @@
      
 </body>
 <script>
+    city=""
      function displayCity()
     {
         city=cname.value
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=b41ec3be35c7dac8aabbc21ba253137a`).then(data=>data.json()).then(data=>displayData(data))
     }
 
-    function displayData(cData)
-    {
+    function displayData(cDataa)
+    {  
+       
         result1.innerHTML=``
         result3.innerHTML=``
-    cname=cData.name
-    temp=cData.main['temp']
-    humidity=cData.main['humidity']
-    deg=(Math.floor(temp)) - 273
-    wind=cData.wind.speed
+    cnamee=cDataa.name
+   tempp=cDataa.main['temp']
+    humidityy=cDataa.main['humidity']
+    degg=(Math.floor(tempp)) - 273
+    windd=cDataa.wind.speed
     
     // population=cData[0].population
     // flag=cData[0].flag
@@ -106,20 +108,20 @@
 
 <div class="weather">
     <img src="./images/rain.png" class="weather-icon">
-    <h1 class="temp">${deg}°C</h1>
-    <h2 class="city">${cname}</h2>
+    <h1 class="temp">${degg}°C</h1>
+    <h2 class="city">${cnamee}</h2>
     <div class="details">
         <div class="col">
             <img src="./images/humidity.png" alt="">
             <div>
-                <p class="humidity">${humidity}</p>
+                <p class="humidity">${humidityy}</p>
                 <p>Humidity</p>
             </div>
         </div>
         <div class="col">
             <img src="./images/wind.png" alt="">
             <div>
-                <p class="wind">${wind}/hr</p>
+                <p class="wind">${windd}/hr</p>
                 <p>Wind Speed</p>
             </div>
         </div>
@@ -153,8 +155,7 @@
        + long;
        displayWeather(lat,long)
     }
- </script>
-<script>
+ 
     function displayWeather(lat,long)
     {
         
@@ -162,7 +163,7 @@
     }
     
     function displayDataa(cData)
-    {
+    {   
         result.innerHTML=``
         result1.innerHTML=``
     cname=cData.name
@@ -209,6 +210,7 @@
     
     
     `
+    
     
     }
     
