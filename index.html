@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./weather.css">
+    <script src="https://kit.fontawesome.com/97c06e64ae.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- <h1 style="color: rgba(14, 21, 126, 0.908)">Weather App</h1>
+   <h3>Click the button to identify the users location</h3>
+   <div>
+      <button onclick="myGeolocator()">
+         Get location
+      </button>
+      <div id="result1"></div>
+   </div>   
+    <div id="result">
+
+
+    </div> -->
+    <div class="card">
+        <div class="geo">
+            <!-- <h1>Your Location</h1> -->
+            <!-- <i class="fa-solid fa-location-dot"></i> -->
+            <div>
+               <button onclick="myGeolocator()">
+                <i class="fa-solid fa-location-dot fa-2"></i>
+
+             </button>
+            </div>
+              
+
+       
+        </div>
+        <div id="result1"></div>
+
+    <div class="search">
+
+        <input id="cname" type="text" placeholder="Enter City Name" spellcheck="false">
+        <button onclick="displayCity()"><img src="./images/search.png" alt=""></button>
+
+        
+    </div> 
+    <div id="result"></div>
+        
+      <div id="result3"></div>
+     
+
+       
+    <!-- </div> -->
+    <!-- <div class="weather">
+        <img src="./images/rain.png" class="weather-icon">
+        <h1 class="temp"></h1>
+        <h2 class="city"></h2>
+        <div class="details">
+            <div class="col">
+                <img src="./images/humidity.png" alt="">
+                <div>
+                    <p class="humidity"></p>
+                    <p>Humidity</p>
+                </div>
+            </div>
+            <div class="col">
+                <img src="./images/wind.png" alt="">
+                <div>
+                    <p class="wind"></p>
+                    <p>Wind Speed</p>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+    </div>
+     
+</body>
+<script>
+     function displayCity()
+    {
+        city=cname.value
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=b41ec3be35c7dac8aabbc21ba253137a`).then(data=>data.json()).then(data=>displayData(data))
+    }
+
+    function displayData(cData)
+    {
+        result1.innerHTML=``
+        result3.innerHTML=``
+    cname=cData.name
+    temp=cData.main['temp']
+    humidity=cData.main['humidity']
+    deg=(Math.floor(temp)) - 273
+    wind=cData.wind.speed
+    
+    // population=cData[0].population
+    // flag=cData[0].flag
+    // currency=cData[0].currencies[0].name
+    // symbol=cData[0].currencies[0].symbol
+    // lang=cData[0].languages[0].name
+    
+    result.innerHTML=`
+    <div class="card">
+
+
+<div class="weather">
+    <img src="./images/rain.png" class="weather-icon">
+    <h1 class="temp">${deg}°C</h1>
+    <h2 class="city">${cname}</h2>
+    <div class="details">
+        <div class="col">
+            <img src="./images/humidity.png" alt="">
+            <div>
+                <p class="humidity">${humidity}</p>
+                <p>Humidity</p>
+            </div>
+        </div>
+        <div class="col">
+            <img src="./images/wind.png" alt="">
+            <div>
+                <p class="wind">${wind}/hr</p>
+                <p>Wind Speed</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+    
+    
+    `
+    
+    }
+
+
+    //let result = document.getElementById("result");
+    let userLocation = navigator.geolocation;
+    function myGeolocator() {
+       if(userLocation) {
+          userLocation.getCurrentPosition(success);
+       } else {
+          "The geolocation API is not supported by your browser.";
+       }
+    }
+    function success(data) {
+       let lat = data.coords.latitude;
+       let long = data.coords.longitude;
+       result3.innerHTML = "Latitude: "
+       + lat
+       + "<br>Longitude: "
+       + long;
+       displayWeather(lat,long)
+    }
+ </script>
+<script>
+    function displayWeather(lat,long)
+    {
+        
+        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=b41ec3be35c7dac8aabbc21ba253137a`).then(data=>data.json()).then(data=>displayDataa(data))
+    }
+    
+    function displayDataa(cData)
+    {
+        result.innerHTML=``
+        result1.innerHTML=``
+    cname=cData.name
+    temp=cData.main['temp']
+    humidity=cData.main['humidity']
+    deg=(Math.floor(temp))-273
+
+    wind=cData.wind.speed
+    
+    // population=cData[0].population
+    // flag=cData[0].flag
+    // currency=cData[0].currencies[0].name
+    // symbol=cData[0].currencies[0].symbol
+    // lang=cData[0].languages[0].name
+    
+    result3.innerHTML=`
+    <div class="card">
+
+
+ <div class="weather">
+    <img src="./images/rain.png" class="weather-icon">
+    <h1 class="temp">${deg}°C</h1>
+    <h2 class="city">${cname}</h2>
+    <div class="details">
+        <div class="col">
+            <img src="./images/humidity.png" alt="">
+            <div>
+                <p class="humidity">${humidity}</p>
+                <p>Humidity</p>
+            </div>
+        </div>
+        <div class="col">
+            <img src="./images/wind.png" alt="">
+            <div>
+                <p class="wind">${wind}/hr</p>
+                <p>Wind Speed</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+    
+    
+    `
+    
+    }
+    
+    
+    </script>
+</html>
