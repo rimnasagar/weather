@@ -50,7 +50,15 @@
     <div class="header">
     <div class="card">
         <div class="geo">
-            <!-- <h1>Your Location</h1> -->
+            <h1>Today's weather</h1>
+            <h1 id="p1"></h1>
+<script>
+	var date = new Date();
+    var current_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+ date.getFullYear();
+
+	// var current_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+ date.getDate();
+	document.getElementById("p1").innerHTML = current_date;
+</script>
             <!-- <i class="fa-solid fa-location-dot"></i> -->
             <div>
                <button onclick="myGeolocator()">
